@@ -15,6 +15,6 @@ int main(void)
 {
 	setbuf(stdout,NULL);
 
-	printf("PRUEBAAAAAA");
+	printf("PRUEBAAAAAA 2");
 	return EXIT_SUCCESS;
 }

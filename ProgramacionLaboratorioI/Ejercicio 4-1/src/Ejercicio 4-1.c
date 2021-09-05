@@ -8,10 +8,11 @@
  ============================================================================
  */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 
-int CalcularFactorial(int numeroIngresado);
+//int CalcularFactorial(int numeroIngresado);
 int IngresoNumero(char* mensaje,int min,int max);
 
 int main(void)
@@ -24,7 +25,7 @@ int main(void)
 
 	resultadoFactorial = 1;
 
-	numeroIngresado = IngresoNumero("\nIngrese un numero entre 0 y 10: ", 0, 15);
+	numeroIngresado = IngresoNumero("\nIngrese un numero entre 0 y 15: ", 0, 15);
 
 	aux = numeroIngresado;
 
@@ -44,8 +45,14 @@ int main(void)
 		}
 	}
 
-	printf("\nEl factorial de %d es: %d",numeroIngresado,resultadoFactorial);
-
+	if(numeroIngresado >= 0)
+	{
+		printf("\nEl factorial de %d es: %d",numeroIngresado,resultadoFactorial);
+	}
+	else
+	{
+		printf("\nNo es posible calcular el factorial de numeros negativos");
+	}
 
 	return EXIT_SUCCESS;
 }
@@ -67,7 +74,7 @@ int IngresoNumero(char* mensaje,int min,int max)
 	return numeroIngresado;
 }
 
-int CalcularFactorial(int numeroIngresado)
+/*int CalcularFactorial(int numeroIngresado)
 {
 	int resultado;
 
@@ -81,4 +88,4 @@ int CalcularFactorial(int numeroIngresado)
 	}
 
 	return resultado;
-}
+}*/
