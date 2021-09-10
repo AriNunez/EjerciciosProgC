@@ -18,13 +18,20 @@ int utn_getNumero(int* pResultado,char* mensaje,char* mensajeError,int minimo,in
 		do
 		{
 			printf("%s",mensaje);
-			if()
+			scanf("%d",&bufferInt);
+			if(bufferInt >= minimo && bufferInt <= maximo)
 			{
-
+				*pResultado = bufferInt;
+				retorno = 0;
+				break;
+			}
+			else
+			{
+				printf("%s",mensajeError);
+				reintentos--;
 			}
 		}while(reintentos >= 0);
 	}
-
 
 	return retorno;
 }
