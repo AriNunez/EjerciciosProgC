@@ -7,17 +7,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "input.h"
 
-void CargarVectorEnteros(int vector[],int tam)
+void CargarVectorEnteros(int vector[],int tam,char* mensaje,int min, int max)
 {
     int i;
 
     for(i = 0;i<tam;i++)
     {
-       printf("\nIngrese un numero: ");
-       scanf("%d",&vector[i]);
+       vector[i] = IngresoNumero(mensaje, min, max);
     }
-
 }
 
 int BuscarMaximo(int vector[],int tam)
@@ -40,7 +39,7 @@ void MostrarVector(int vector[],int tam)
 
 	for(i = 0;i<tam;i++)
 	{
-	        printf("%d\t",vector[i]);
+		printf("%d\t",vector[i]);
 	}
 
 }
@@ -55,4 +54,19 @@ void MostrarIndicesDelValor(int vector[],int tam,int valor)
 			printf("\nIndices de Valor: %d",i);
 		}
 	}
+}
+
+int SumarValoresVector (int vector[],int tam)
+{
+	int i;
+	int acumulador;
+
+	acumulador = 0;
+
+	for(i = 0;i<tam;i++)
+	{
+		acumulador = acumulador + vector[i];
+	}
+
+	return acumulador;
 }

@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : Ejercicio.c
+ Name        : prueba.c
  Author      : 
  Version     :
  Copyright   : Your copyright notice
@@ -14,18 +14,14 @@
 
 #define TAM 5
 
-int main()
+int main(void)
 {
 	setbuf(stdout,NULL);
 
 	int listaNumeros[TAM];
-	int acumuladorVector;
 
-	CargarVectorEnteros(listaNumeros, TAM, "\n Ingrese un numero: ", -100000, 100000);
+	CargarVectorEnteros(listaNumeros, TAM, "\nIngrese un numero entre 0 y 10", "\nError! No se encuentra dentro del rango", 0, 10, 2);
 	MostrarVector(listaNumeros, TAM);
-	acumuladorVector = SumarValoresVector(listaNumeros, TAM);
-	printf("\nLa sumatoria de los numeros ingresados es: %d",acumuladorVector);
 
 	return EXIT_SUCCESS;
 }
-

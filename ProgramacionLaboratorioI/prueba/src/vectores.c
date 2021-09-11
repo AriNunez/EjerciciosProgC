@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utn.h"
-#include "verificaciones.h"
+//#include "verificaciones.h"
 
 void CargarVectorEnteros(int vector[],int tam,char* mensaje,char* mensajeError,int minimo, int maximo,int reintentos)
 {

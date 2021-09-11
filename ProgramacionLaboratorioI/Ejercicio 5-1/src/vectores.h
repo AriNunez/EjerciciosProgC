@@ -8,12 +8,11 @@
 #ifndef VECTORES_H_
 #define VECTORES_H_
 
-
-
-void CargarVectorEnteros(int vector[],int tam);
+void CargarVectorEnteros(int vector[],int tam,char* mensaje,int min, int max);
 int BuscarMaximo(int vector[],int tam);
 void MostrarIndicesDelValor(int vector[],int tam,int valor);
 void MostrarVector(int vector[],int tam);
 
+int SumarValoresVector (int vector[],int tam);
 
 #endif /* VECTORES_H_ */

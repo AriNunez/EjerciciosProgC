@@ -16,6 +16,6 @@ int utn_getChar(char* pResultado,char* mensaje,char* mensajeError,char minimo,ch
 
 int utn_getTexto(char* pResultado,char* mensaje,char* mensajeError,int limite,int reintentos);
 
-int utn_getName(char* pResultado,char* mensaje,char* mensajeError,,int limite,int reintentos);
+int utn_getName(char* pResultado,char* mensaje,char* mensajeError,int limite,int reintentos);
 
 #endif /* UTN_H_ */
