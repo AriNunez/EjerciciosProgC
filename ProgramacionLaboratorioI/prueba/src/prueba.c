@@ -10,18 +10,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "vectores.h"
 
-#define TAM 5
+int main(void) {
 
-int main(void)
-{
 	setbuf(stdout,NULL);
 
-	int listaNumeros[TAM];
+	char caracter[10]= "Hola";
 
-	CargarVectorEnteros(listaNumeros, TAM, "\nIngrese un numero entre 0 y 10", "\nError! No se encuentra dentro del rango", 0, 10, 2);
-	MostrarVector(listaNumeros, TAM);
-
+	MostrarString(caracter);
 	return EXIT_SUCCESS;
 }

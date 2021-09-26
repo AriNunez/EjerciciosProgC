@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utn.h"
-//#include "verificaciones.h"
+
 
 void CargarVectorEnteros(int vector[],int tam,char* mensaje,char* mensajeError,int minimo, int maximo,int reintentos)
 {
@@ -79,12 +79,29 @@ void MostrarIndicesDelValor(int vector[],int tam,int valor)
 		}
 	}
 }
-void InicializarVector(int vector[],int tam,int valorInicial)
+int InicializarVector(int vector[],int tam,int valorInicial)
 {
 	int i;
-	for(i=0;i<tam;i++)
+	int retorno;
+
+	retorno = 0;
+
+	if(vector != NULL && tam > 0)
 	{
-		vector[i]=valorInicial;
+		for(i=0;i<tam;i++)
+		{
+			vector[i]=valorInicial;
+		}
+
+		retorno = 1;
 	}
+	return retorno;
 }
 
+void MostrarString(char* string)
+{
+	if(string != NULL)
+	{
+		puts(string);
+	}
+}

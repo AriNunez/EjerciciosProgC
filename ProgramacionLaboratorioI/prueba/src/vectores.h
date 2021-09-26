@@ -13,6 +13,7 @@ int BuscarMaximo(int vector[],int tam);
 int BuscarMinimo(int vector[],int tam);
 void MostrarIndicesDelValor(int vector[],int tam,int valor);
 void MostrarVector(int vector[],int tam);
-void InicializarVector(int vector[],int tam,int valorInicial);
+int InicializarVector(int vector[],int tam,int valorInicial);
+void MostrarString(char* string);
 
 #endif /* VECTORES_H_ */

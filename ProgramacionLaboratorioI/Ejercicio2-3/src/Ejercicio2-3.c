@@ -17,7 +17,7 @@ número de cliente,
 estado civil ('s' para soltero", 'c' para casado o 'v' viudo),
 edad( solo mayores de edad, más de 17),
 temperatura corporal (validar por favor)
-y genero('f' para femenino, 'm' para masculino, 'o' para no binario).
+y Genero('f' para femenino, 'm' para masculino, 'o' para no binario).
 NOTA: El precio por pasajero es de $600.
 Se debe informar (solo si corresponde):
 a) La cantidad de personas con estado "viudo" de más de 60 años.
@@ -42,7 +42,7 @@ int main()
     char estadoCivil;
     int edad;
     float tempCorporal;
-    char genero;
+    char Genero;
 
     int contadorPasajeros = 0;
 
@@ -93,12 +93,12 @@ int main()
 
         printf("\nIngrese el Genero (f/m/o): ");
         fflush(stdin);
-        scanf("%c",&genero);
-        while(genero != 'f' && genero != 'm' && genero != 'o')
+        scanf("%c",&Genero);
+        while(Genero != 'f' && Genero != 'm' && Genero != 'o')
         {
             printf("\nError! Ingrese el Genero (f/m/o): ");
             fflush(stdin);
-            scanf("%c",&genero);
+            scanf("%c",&Genero);
         }
 
         contadorPasajeros++;
@@ -112,7 +112,7 @@ int main()
             }
         }
 
-        if(genero == 'f' && estadoCivil == 's')
+        if(Genero == 'f' && estadoCivil == 's')
         {
             if(flagMujerSolteraJoven == 0 || edad < edadMujerSolteraJoven)
             {
