@@ -10,15 +10,25 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
-#include "vectores.h"
+#include "utn.h"
 
 int main(void) {
 
 	setbuf(stdout,NULL);
 
-	char caracter[10]= "Hola";
+	char direccion[50];
+	char cuit[15];
 
-	MostrarString(caracter);
+	if(utn_getDireccion(direccion, "\nIngrese una direccion (no se admiten caracteres especiales): \n", "\nERROR\n", 50, 5)==0)
+	{
+		puts(direccion);
+	}
+
+	if(utn_getCuitCuil(cuit, "\nIngrese el CUIT: \n", "\nERROR\n", 15, 5)==0)
+	{
+		puts(cuit);
+	}
+
+
 	return EXIT_SUCCESS;
 }

@@ -16,11 +16,23 @@
 //---DEFINE---//
 #define LIBRE 0
 #define OCUPADO 1
-#define BAJA -1
+#define TAM_CADENACHAR 50
+#define IPHONE 1
+#define MAC 2
+#define IPAD 3
+#define ACCESORIOS 4
+#define EEUU 1
+#define CHINA 2
+#define OTRO 3
+
 
 //---ESTRUCTURA---//
 typedef struct {
 	int idProductos;
+	char descripcion[TAM_CADENACHAR];
+	int nacionalidad;
+	int tipo;
+	float precio;
 	int isEmpty;
 }eProductos;
 
@@ -28,29 +40,33 @@ typedef struct {
 
 //---INICIALIZACION Y BUSQUEDA---//
 
-void eGen_Inicializar(eProductos vector[],int tam);
-int eGen_ObtenerID(int ID);
-int eGen_ObtenerIndexLibre(eProductos vector[],int tam);
-int eGen_BuscarPorID(eProductos vector[],int tam,int id);
-void eGen_MostrarUno(eProductos elemento);
-int eGen_MostrarTodos(eProductos vector[],int tam);
-int eGen_MostrarDadosDeBaja(eProductos vector[],int tam);
+void eProductos_Inicializar(eProductos vector[],int tam);
+int eProductos_ObtenerID();
+int eProductos_ObtenerIndexLibre(eProductos vector[],int tam);
+int eProductos_BuscarPorID(eProductos vector[],int tam,int id);
+void eProductos_MostrarUno(eProductos elemento);
+int eProductos_MostrarTodos(eProductos vector[],int tam);
 
 //---ABM---//
 
-eProductos eGen_CargarDatos(void);
-eProductos eGen_ModificarUno(eProductos elemento);
-int eGen_Alta(eProductos vector[],int tam,int ID);
-int eGen_Baja(eProductos vector[],int tam);
-int eGen_Modificacion(eProductos vector[],int tam);
+int eProductos_CargarDatos(eProductos* elemento);
+int eProductos_ModificarUno(eProductos elementoParaModificar,eProductos* elementoModificado);
+int eProductos_Alta(eProductos vector[],int tam);
+int eProductos_Baja(eProductos vector[],int tam);
+int eProductos_Modificacion(eProductos vector[],int tam);
 
 //---ORDENAMIENTOS Y LISTADOS FUNCIONALES---//
 
+int eProductos_InformarProductoPorPrecio(eProductos vector[],int tam,float precioBuscado);
+int eProductos_BuscarPrecioMasAlto(eProductos vector[],int tam,float* precioBuscado);
 
 //---PROTOTIPOS DE ORDENAMIENTOS Y LISTADOS (PARA CAMBIAR Y AJUSTAR DEPENDENDIENDO LOS CRITERIOS)---//
-int eGen_OrdenarGenPorCriterioFIAscendente(eProductos vector[], int tam);
-int eGen_OrdenarGenPorCriterioFIDescendiente(eProductos vector[], int tam);
-int eGen_OrdenarGenPorCriterioCharAscendente(eProductos vector[], int tam);
-int eGen_OrdenarGenPorCriterioCharDescendente(eProductos vector[], int tam);
+int eProductos_OrdenarGenPorCriterioFIAscendente(eProductos vector[], int tam);
+int eProductos_OrdenarGenPorCriterioFIDescendiente(eProductos vector[], int tam);
+int eProductos_OrdenarGenPorCriterioCharAscendente(eProductos vector[], int tam);
+int eProductos_OrdenarGenPorCriterioCharDescendente(eProductos vector[], int tam);
+
+
+
 
 #endif /* EPRODUCTOS_H_ */

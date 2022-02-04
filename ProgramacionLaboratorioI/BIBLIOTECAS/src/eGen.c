@@ -6,6 +6,7 @@
  */
 
 #include "eGen.h"
+#include "utn.h"
 
 
 									//---FUNCIONES---//
@@ -23,13 +24,6 @@ void eGen_Inicializar(eGen vector[],int tam)
 			vector[i].isEmpty = LIBRE;
 		}
 	}
-}
-
-int eGen_ObtenerID(int ID)
-{
-	ID++;
-
-	return ID;
 }
 
 int eGen_ObtenerIndexLibre(eGen vector[],int tam)
@@ -59,6 +53,8 @@ int eGen_BuscarPorID(eGen vector[],int tam,int id)
 	int i;
 	int retorno;
 
+	retorno = -1;
+
 	if(vector != NULL && tam > 0)
 	{
 		for(i=0;i<tam;i++)
@@ -86,6 +82,7 @@ int eGen_MostrarTodos(eGen vector[],int tam)
 	int cantidad;
 
 	retorno = 0;
+	cantidad = 0;
 
 	puts("\n\t>>Listado Gen");
 	printf("%5s\n\n","ID"); //TITULOS DE COLUMNAS
@@ -110,78 +107,153 @@ int eGen_MostrarTodos(eGen vector[],int tam)
 	return retorno;
 }
 
-int eGen_MostrarDadosDeBaja(eGen vector[],int tam)
+//---ABM---//
+
+int eGen_CargarDatos(eGen* elemento)
 {
-	int i;
 	int retorno;
-	int cantidad;
+	eGen auxiliar;
 
 	retorno = 0;
-
-	puts("\n\t>>Listado Gen");
-	printf("%5s\n\n","ID"); //TITULOS DE COLUMNAS
-
-	if(vector != NULL && tam > 0)
+	//CARGAR DATOS NECESARIOS PARA EL ALTA-->>IMPORTANTE<<--NO CARGAR DATOS NI ESTADO
+	/*
+	if(elemento != NULL)
 	{
-		for(i=0;i<tam;i++)
+		if(utn_getTexto(auxiliar.descripcion, "Ingrese la descripcion del producto: \n", "¡ERROR!\n", TAM_CADENACHAR, 0)==0)
 		{
-			if(vector[i].isEmpty == BAJA)
+			printf("\n\t>>Listado Nacionalidades\n1. EEUU\n2. CHINA\n3. OTRO\n\n");
+			if(utn_getInt(&auxiliar.nacionalidad, "Seleccione una nacionalidad: \n", "¡ERROR!\n", 1, 3, 2)==0)
 			{
-				eGen_MostrarUno(vector[i]);
-				cantidad++;
+				printf("\n\t>>Listado Tipos\n1. IPHONE\n2. MAC\n3. IPAD\n4. ACCESORIOS\n\n");
+				if(utn_getInt(&auxiliar.tipo, "Seleccione un tipo: \n", "¡ERROR!\n", 1, 4, 2)==0)
+				{
+					if(utn_getFloat(&auxiliar.precio, "Ingrese el precio del producto: \n", "¡ERROR!\n", 0, 1000000000, 2)==0)
+					{
+						retorno = 1;
+						*elemento = auxiliar;
+					}
+				}
 			}
 		}
 	}
-
-	if(cantidad > 0)
-	{
-		retorno = 1;
-	}
+	 */
 
 	return retorno;
 }
 
-//---ABM---//
-
-eGen eGen_CargarDatos(void)
+int eGen_ModificarUno(eGen elementoParaModificar,eGen* elementoModificado)
 {
+	int retorno;
+	int opciones;
 	eGen auxiliar;
 
-	//CARGAR DATOS NECESARIOS PARA EL ALTA-->>IMPORTANTE<<--NO CARGAR DATOS NI ESTADO
+	auxiliar = elementoParaModificar;
+	retorno = 0;
 
+	/*	if(elementoModificado != NULL && elementoParaModificar.isEmpty == OCUPADO)
+	{
+		printf("\n¿Que desea modificar?\n1. TODO EL PRODUCTO\n2. SOLO UNA CARACTERISTICA\n\n");
+		if(utn_getInt(&opciones, "Seleccione una opcion: \n", "¡ERROR!\n", 1, 2, 2)==0)
+		{
+			switch(opciones)
+			{
+				case 1:
+					if(utn_getTexto(auxiliar.descripcion, "Ingrese la nueva descripcion del producto: \n", "¡ERROR!\n", TAM_CADENACHAR, 0)==0)
+					{
+						printf("\n\t>>Listado Nacionalidades\n1. EEUU\n2. CHINA\n3. OTRO\n\n");
+						if(utn_getInt(&auxiliar.nacionalidad, "Seleccione una nueva nacionalidad: \n", "¡ERROR!\n", 1, 3, 2)==0)
+						{
+							printf("\n\t>>Listado Tipos\n1. IPHONE\n2. MAC\n3. IPAD\n4. ACCESORIOS\n\n");
+							if(utn_getInt(&auxiliar.tipo, "Seleccione un nuevo tipo: \n", "¡ERROR!\n", 1, 4, 2)==0)
+							{
+								if(utn_getFloat(&auxiliar.precio, "Ingrese el nuevo precio del producto: \n", "¡ERROR!\n", 0, 1000000000, 2)==0)
+								{
+									retorno = 1;
+									*elementoModificado = auxiliar;
+									break;
+								}
+							}
+						}
+					}
+					break;
 
-	return auxiliar;
+				case 2:
+					printf("\n¿Que caracteristica desea modificar?\n1. DESCRIPCION\n2. NACIONALIDAD\n3. TIPO\n4. PRECIO\n\n");
+					if(utn_getInt(&opciones, "Seleccione una opcion: \n", "¡ERROR!\n", 1, 4, 1)==0)
+					{
+						switch (opciones)
+						{
+							case 1:
+								if(utn_getTexto(auxiliar.descripcion, "Ingrese la nueva descripcion del producto: \n", "¡ERROR!\n", TAM_CADENACHAR, 0)==0)
+								{
+									retorno = 1;
+									*elementoModificado = auxiliar;
+									break;
+								}
+								break;
+							case 2:
+								printf("\n\t>>Listado Nacionalidades\n1. EEUU\n2. CHINA\n3. OTRO\n\n");
+								if(utn_getInt(&auxiliar.nacionalidad, "Seleccione una nueva nacionalidad: \n", "¡ERROR!\n", 1, 3, 2)==0)
+								{
+									retorno = 1;
+									*elementoModificado = auxiliar;
+									break;
+								}
+								break;
+							case 3:
+								printf("\n\t>>Listado Tipos\n1. IPHONE\n2. MAC\n3. IPAD\n4. ACCESORIOS\n\n");
+								if(utn_getInt(&auxiliar.tipo, "Seleccione un nuevo tipo: \n", "¡ERROR!\n", 1, 4, 2)==0)
+								{
+									retorno = 1;
+									*elementoModificado = auxiliar;
+									break;
+								}
+								break;
+							case 4:
+								if(utn_getFloat(&auxiliar.precio, "Ingrese el nuevo precio del producto: \n", "¡ERROR!\n", 0, 1000000000, 2)==0)
+								{
+									retorno = 1;
+									*elementoModificado = auxiliar;
+									break;
+								}
+								break;
+						}
+					}
+					break;
+			}
+		}
+	}*/
+	return retorno;
 }
 
-eGen eGen_ModificarUno(eGen elemento)
-{
-	eGen auxiliar;
-
-	auxiliar = elemento;
-
-	return auxiliar;
-}
-
-int eGen_Alta(eGen vector[],int tam,int ID)
+int eGen_Alta(eGen vector[],int tam,int* idAutoincremental)
 {
 	int retorno;
 	eGen auxiliar;
 	int index;
+	int idAux;
 
 	retorno = 0;
-	index = eGen_ObtenerIndexLibre(vector, tam);
+	index = eProductos_ObtenerIndexLibre(vector, tam);
+	idAux = *idAutoincremental+1;
 
 	if(index != -1)
 	{
-		auxiliar = eGen_CargarDatos();
+		if(eProductos_CargarDatos(&auxiliar)==1)
+		{
+			retorno = 1;
+		}
 
-		auxiliar.idGen = eGen_ObtenerID(ID);
+		if(retorno == 1)
+		{
+			auxiliar.idGen = idAux;
 
-		auxiliar.isEmpty = OCUPADO;
+			auxiliar.isEmpty = OCUPADO;
 
-		vector[index] = auxiliar;
+			vector[index] = auxiliar;
 
-		retorno = 1;
+			*idAutoincremental = idAux;
+		}
 	}
 	return retorno;
 }
@@ -217,7 +289,7 @@ int eGen_Baja(eGen vector[],int tam)
 
 		if(utn_getCharParaContinuar(&confirmacion, "¿DESEA CONTINUAR? S/N\n", "¡ERROR!\n", 'S', 'N', 3)==0 && confirmacion == 'S')
 		{
-			vector[index].isEmpty = BAJA;
+			vector[index].isEmpty = LIBRE;
 			retorno = 1;
 		}
 	}
@@ -230,11 +302,38 @@ int eGen_Modificacion(eGen vector[],int tam)
 	int idModificacion;
 	int index;
 	int flagMostrados;
+	char confirmacion;
 	eGen buffer;
 
-	//TERMINAR ESTOOOOOOOOOOOO
+	if(eProductos_MostrarTodos(vector, tam)==1)
+	{
+		flagMostrados = 1;
+	}
 
+	if(flagMostrados == 1)
+	{
+		if(utn_getInt(&idModificacion, "Ingrese un ID para modificar: \n", "¡ERROR!\n", 1, 3000000, 0)==0)
+		{
+			while(eGen_BuscarPorID(vector, tam, idModificacion)==-1)
+			{
+				puts("NO EXISTE ID.");
+				utn_getInt(&idModificacion, "Ingrese un ID para modificar: \n", "¡ERROR!\n", 1, 3000000, 0);
+			}
 
+			index = eGen_BuscarPorID(vector, tam, idModificacion);
+
+			if(eGen_ModificarUno(vector[index], &buffer)==1)
+			{
+				if(utn_getCharParaContinuar(&confirmacion, "¿DESEA CONTINUAR? S/N\n", "¡ERROR!\n", 'S', 'N', 3)==0 && confirmacion == 'S')
+				{
+					vector[index] = buffer;
+					retorno = 1;
+				}
+			}
+		}
+	}
+
+	return retorno;
 }
 
 //---ORDENAMIENTOS Y LISTADOS FUNCIONALES---//

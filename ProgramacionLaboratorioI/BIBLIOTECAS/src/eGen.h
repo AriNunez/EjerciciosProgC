@@ -16,7 +16,6 @@
 //---DEFINE---//
 #define LIBRE 0
 #define OCUPADO 1
-#define BAJA -1
 
 //---ESTRUCTURA---//
 typedef struct {
@@ -29,18 +28,16 @@ typedef struct {
 //---INICIALIZACION Y BUSQUEDA---//
 
 void eGen_Inicializar(eGen vector[],int tam);
-int eGen_ObtenerID(int ID);
 int eGen_ObtenerIndexLibre(eGen vector[],int tam);
 int eGen_BuscarPorID(eGen vector[],int tam,int id);
 void eGen_MostrarUno(eGen elemento);
 int eGen_MostrarTodos(eGen vector[],int tam);
-int eGen_MostrarDadosDeBaja(eGen vector[],int tam);
 
 //---ABM---//
 
-eGen eGen_CargarDatos(void);
-eGen eGen_ModificarUno(eGen elemento);
-int eGen_Alta(eGen vector[],int tam,int ID);
+int eGen_CargarDatos(eGen* elemento);
+int eGen_ModificarUno(eGen elementoParaModificar,eGen* elementoModificado);
+int eGen_Alta(eGen vector[],int tam,int* idAutoincremental);
 int eGen_Baja(eGen vector[],int tam);
 int eGen_Modificacion(eGen vector[],int tam);
 

@@ -11,13 +11,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "utn.h"
 
 int main(void) {
 
-	char nombres[2][5];
+	setbuf(stdout,NULL);
 
-	strcpy(nombres[0],"holaaaaa");
+	int numero;
 
-	puts(nombres[0]);
+	if(utn_getIntSinLimite(&numero, "Ingrese un numero: ", "\nERROR\n", 10)==0)
+	{
+		printf("%d",numero);
+	}
+	else
+	{
+		puts("\nERROR EN ELSE\n");
+	}
+
 	return EXIT_SUCCESS;
 }
